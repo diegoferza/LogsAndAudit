@@ -20,10 +20,7 @@ export class BinnacleAuditComponent implements OnInit {
   hablitarNameTable = false;
   hablitarNameDatabase = false;
   habilitarNameApplication = false;
-  checkedDatabase= true;
-  checkedSpecific = true;
-  checkedTable = true;
-
+  
   pageActual: number = 1;
   public filterBinnacle = '';
   public resultFindBinnacle: ResultFindBinnacleAudit[] = [];
@@ -80,13 +77,17 @@ export class BinnacleAuditComponent implements OnInit {
   }
 
   toDisable(){
-    this.habilitarRegistryId = false;
-    this.hablitarNameTable = false;
-    this.hablitarNameDatabase = false;
-    this.habilitarNameApplication = false;   
-    this.checkedDatabase= false;
-    this.checkedSpecific = false;
-    this.checkedTable = false;
+    if(this.filterBinnacle == 'specific'){
+      this.enableSpecific();     
+    }
+
+    if(this.filterBinnacle == 'database'){
+      this.todisableDatabase();      
+    }
+
+    if(this.filterBinnacle == 'table'){
+      this.toDisableTable();     
+    }    
   }  
   
   findAudit() {      
@@ -120,8 +121,7 @@ getDatabase() {
 
   reset() {
     this.findBinnacle = { registryId: '', nameTable: '', nameDatabase: '',nameApplication: '' }; 
-    this.resultFindBinnacle = [];  
-    this.enableSpecific();
+    this.resultFindBinnacle = [];      
     this.toDisable();        
   }
 }

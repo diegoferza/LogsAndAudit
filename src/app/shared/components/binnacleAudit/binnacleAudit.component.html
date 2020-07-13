@@ -22,7 +22,6 @@
               <label for="specif">Registro especifico</label>
               <input id="specific" type="radio" name="filter" value="specific" 
               (change)="onItemChange($event)" [(ngModel)]="specific"
-              ng-checked="!checkedSpecific" 
               class="form-control">
             </div>
           </div>
@@ -31,7 +30,6 @@
               <label for="databa">Base de datos</label>
               <input id="database" type="radio" name="filter" value="database" 
               (change)="onItemChange($event)" [(ngModel)]="database"
-              ng-checked="!checkedDatabase" 
               class="form-control">             
             </div>
           </div>
@@ -40,7 +38,6 @@
               <label for="tabl">Tabla</label>
               <input id="table" type="radio" name="filter" value="table" 
               (change)="onItemChange($event)" [(ngModel)]="table"
-              ng-checked="!checkedTable" 
               class="form-control">              
             </div>
           </div>                 

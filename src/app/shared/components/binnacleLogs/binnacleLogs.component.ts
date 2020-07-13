@@ -19,14 +19,7 @@ export class BinnacleLogsComponent implements OnInit {
   hablitarUserLogs = false;
   hablitarStartDate = false;
   habilitarEndDate = false;
-
   habilitarTypeInput = false;
-
-
-  checkedLogs= true;
-  checkedDateRange = true;
-  checkedUser = true;
-  checkedType = true;
 
   pageActual: number = 1;
   public filterBinnacle = '';
@@ -104,15 +97,21 @@ export class BinnacleLogsComponent implements OnInit {
   }
 
   toDisable(){
-    this.habilitarLogId = false;
-    this.hablitarUserLogs = false;
-    this.hablitarStartDate = false;
-    this.habilitarEndDate = false; 
-    this.habilitarTypeInput = false;  
-    this.checkedLogs= false;
-    this.checkedDateRange = false;
-    this.checkedUser = false;
-    this.checkedType = false;
+    if(this.filterBinnacle == 'idLogs'){
+      this.toDisableLogId();      
+    }
+
+    if(this.filterBinnacle == 'userFilter'){
+      this.toDisableUser();    
+    }
+
+    if(this.filterBinnacle == 'dateRange'){
+      this.toDisableDateRange();     
+    }   
+    
+    if(this.filterBinnacle == 'typeFilter'){
+      this.toDisableType();     
+    }       
   }  
   
   findLogs() {      
