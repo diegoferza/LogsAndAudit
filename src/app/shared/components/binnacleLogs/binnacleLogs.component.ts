@@ -55,23 +55,19 @@ export class BinnacleLogsComponent implements OnInit {
   onItemChange(event){
     this.filterBinnacle = event.target.value;
     if(this.filterBinnacle == 'idLogs'){
-      this.toDisableLogId();
-      console.log(this.filterBinnacle);
+      this.toDisableLogId();      
     }
 
     if(this.filterBinnacle == 'userFilter'){
-      this.toDisableUser();
-      console.log(this.filterBinnacle);
+      this.toDisableUser();    
     }
 
     if(this.filterBinnacle == 'dateRange'){
-      this.toDisableDateRange();
-      console.log(this.filterBinnacle);
+      this.toDisableDateRange();     
     }   
     
     if(this.filterBinnacle == 'typeFilter'){
-      this.toDisableType();
-      console.log(this.filterBinnacle);
+      this.toDisableType();     
     }  
   }
 

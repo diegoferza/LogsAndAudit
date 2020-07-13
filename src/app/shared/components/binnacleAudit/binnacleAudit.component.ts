@@ -46,18 +46,15 @@ export class BinnacleAuditComponent implements OnInit {
   onItemChange(event){
     this.filterBinnacle = event.target.value;
     if(this.filterBinnacle == 'specific'){
-      this.enableSpecific();
-      console.log(this.filterBinnacle);
+      this.enableSpecific();     
     }
 
     if(this.filterBinnacle == 'database'){
-      this.todisableDatabase();
-      console.log(this.filterBinnacle);
+      this.todisableDatabase();      
     }
 
     if(this.filterBinnacle == 'table'){
-      this.toDisableTable();
-      console.log(this.filterBinnacle);
+      this.toDisableTable();     
     }    
   }
 
