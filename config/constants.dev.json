@@ -1,0 +1,11 @@
+{
+    "URL_BASE_API_BINNACLE_AUDIT_BYREGISTRY_W": "http://172.19.5.218:9304/api/Audit/ByRegistry?" ,
+    "URL_BASE_API_BINNACLE_AUDIT_BYDATABASE_W": "http://172.19.5.218:9304/api/Audit/ByDatabase?" ,
+    "URL_BASE_API_BINNACLE_AUDIT_BYTABLE_W": "http://172.19.5.218:9304/api/Audit/ByTable?" ,
+    "URL_BASE_API_BINNACLE_LOGS_BYID_W": "http://172.19.5.218:9304/api/Log/ById?" ,
+    "URL_BASE_API_BINNACLE_LOGS_BYDATERANGE_W": "http://172.19.5.218:9304/api/Log/ByDateRange?" ,
+    "URL_BASE_API_BINNACLE_LOGS_BYTYPE_W": "http://172.19.5.218:9304/api/Log/ByType?" ,
+    "URL_BASE_API_BINNACLE_LOGS_BYUSER_W": "http://172.19.5.218:9304/api/Log/ByUser?"
+}
+
+

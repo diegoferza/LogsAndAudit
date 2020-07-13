@@ -1,0 +1,168 @@
+<div class="container pt-5  wow fadeInUp" data-wow-delay="1s">
+    <!-- Image and text -->
+   <mdb-navbar SideClass="navbar navbar-dark indigo ">
+       <mdb-navbar-brand>
+           <a class="navbar-brand" href="#">           
+              Consultar Logs
+           </a>
+       </mdb-navbar-brand>
+   </mdb-navbar>
+     <br>
+      <div class="card ">
+       <div class="navbar-brand">             
+           Seleccione tipo de filtro      
+       </div>   
+     <br>
+     <div class="card ">
+       <div class="container">
+         <form (ngSubmit)="findLogs()" #formBinnacleLogs="ngForm" novalidate>
+           <div class="row" style="margin-top: 20px;">
+             <div class="col-3">
+               <div class="form-group">
+                 <label for="idLog">Id</label>
+                 <input id="idLogs" type="radio" name="filter" value="idLogs" 
+                 (change)="onItemChange($event)" 
+                 ng-checked="!checkedLogs" 
+                 class="form-control">
+               </div>
+             </div>
+             <div class="col-3">
+                <div class="form-group">
+                  <label for="dateRan">Rango de fecha</label>
+                  <input id="" type="radio" name="filter" value="dateRange" 
+                  (change)="onItemChange($event)" 
+                  ng-checked="!checkedDateRange" 
+                  class="form-control">
+                </div>
+              </div>
+             <div class="col-3">
+               <div class="form-group">
+                 <label for="">Usuario</label>
+                 <input id="" type="radio" name="filter" value="userFilter" 
+                 (change)="onItemChange($event)" 
+                 ng-checked="!checkedUser" 
+                 class="form-control">             
+               </div>
+             </div>
+             <div class="col-3">
+               <div class="form-group">
+                 <label for="typ">Tipo</label>
+                 <input id="typeFilter" type="radio" name="filter" value="typeFilter" 
+                 (change)="onItemChange($event)" 
+                 ng-checked="!checkedType" 
+                 class="form-control">              
+               </div>
+             </div>                 
+           </div>         
+           <div class="row" style="margin-top: 20px;">    
+             <div class="col-6">
+               <div class="form-group">
+                 <label for="log">Log id</label>
+                 <input id="float-input" type="text" name="idLog" 
+                 [disabled]="!habilitarLogId"
+                 [(ngModel)]="findBinnacleLog.idLog" 
+                   class="form-control">
+               </div>
+             </div>
+             <div class="col-6">
+               <div class="form-group">
+                 <label for="UserLog">Usuario</label>
+                 <input id="float-input" type="text" name="user" 
+                 [disabled]="!hablitarUserLogs"
+                 [(ngModel)]="findBinnacleLog.user"
+                 class="form-control">             
+               </div>
+             </div>
+             <div class="col-6">
+               <div class="form-group">
+                 <label for="startDat">Fecha inicio</label>
+                 <input id="float-input" type="date" name="startDate" 
+                 [disabled]="!hablitarStartDate"
+                 [(ngModel)]="findBinnacleLog.startDate"
+                 class="form-control">              
+               </div>
+             </div>
+             <div class="col-6">
+               <div class="form-group">
+                 <label for="endDat">Fecha fin</label>
+                 <input id="float-input" type="date" name="endDate" 
+                 [disabled]="!habilitarEndDate"
+                 [(ngModel)]="findBinnacleLog.endDate" 
+                 class="form-control">
+               </div>
+             </div>
+             <div class="col-6">
+                <div class="form-group">
+                  <label for="typeInpu">Tipo</label>
+                  <select class="browser-default custom-select" name="type"
+                  [(ngModel)]="findBinnacleLog.type"
+                  [disabled]="!habilitarTypeInput">
+                  <option [value]="item.name" *ngFor="let item of findBinnacleLogType" >{{item.name}}</option>
+                  </select>                  
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">                  
+                </div>
+              </div>
+             <div class="row pl-2">
+               <div class="col-12">
+                 <button 
+                 label="Guardar" 
+                 class="btn Primary - blue">Consultar</button>
+                 
+                 <button  type="button" 
+                 label="Limpiar" 
+                 class="btn Primary - blue" 
+                 (click)="reset()">Limpiar</button>
+               </div>
+             </div>
+           </div>        
+         </form>
+       </div>
+     </div>
+     <br>
+     <div class="container-fluid">
+       <div class="row" style="margin-top: 20px;">
+         <div class="col">
+           <div class="row">
+             <div class="col-md-8">            
+             </div>
+           </div>
+           <div class="table-responsive">
+             <table #tt class="table table-hover table-bordered">
+               <thead class="thead thead-dark">
+                 <tr>
+                   <th>Metodo</th>
+                   <th>Id usuario</th>
+                   <th>Código error</th>
+                   <th>Mensaje error</th>
+                   <th>Tipo</th>
+                   <th>Fecha</th>
+                   <th>Nombre aplicación</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr
+                   *ngFor="let item of resultFindBinnacleLog | paginate: {itemsPerPage: 10, currentPage: pageActual}">
+                   <td>{{item.method}}</td>
+                   <td>{{item.userId}}</td>
+                   <td>{{item.codeError}}</td>
+                   <td>{{item.messageError}}</td>
+                   <td>{{item.type}}</td>
+                   <td>{{item.date}}</td>
+                   <td>{{item.nameApplication}}</td>                
+                 </tr>
+               </tbody>
+             </table>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+   <pagination-controls (pageChange)=" pageActual = $event" style="text-align: center;">
+   </pagination-controls>
+   <p-toast></p-toast>
+   <p-confirmDialog icon="pi pi-exclamation-triangle" acceptButtonStyleClass="ui-button-info"
+     rejectButtonStyleClass="ui-button-info" [style]="{width: '50vw'}">
+   </p-confirmDialog>

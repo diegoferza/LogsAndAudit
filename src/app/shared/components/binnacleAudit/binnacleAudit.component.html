@@ -1,0 +1,145 @@
+<div class="container pt-5  wow fadeInUp" data-wow-delay="1s">
+ <!-- Image and text -->
+<mdb-navbar SideClass="navbar navbar-dark indigo ">
+    <mdb-navbar-brand>
+        <a class="navbar-brand" href="#">           
+           Consultar Auditoria
+        </a>
+    </mdb-navbar-brand>
+</mdb-navbar>
+  <br>
+   <div class="card ">
+    <div class="navbar-brand">             
+        Seleccione tipo de filtro      
+    </div>   
+  <br>
+  <div class="card ">
+    <div class="container">
+      <form (ngSubmit)="findAudit()" #formBinnacleAudit="ngForm" novalidate>
+        <div class="row" style="margin-top: 20px;">
+          <div class="col-4">
+            <div class="form-group">
+              <label for="specif">Registro especifico</label>
+              <input id="specific" type="radio" name="filter" value="specific" 
+              (change)="onItemChange($event)" [(ngModel)]="specific"
+              ng-checked="!checkedSpecific" 
+              class="form-control">
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group">
+              <label for="databa">Base de datos</label>
+              <input id="database" type="radio" name="filter" value="database" 
+              (change)="onItemChange($event)" [(ngModel)]="database"
+              ng-checked="!checkedDatabase" 
+              class="form-control">             
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group">
+              <label for="tabl">Tabla</label>
+              <input id="table" type="radio" name="filter" value="table" 
+              (change)="onItemChange($event)" [(ngModel)]="table"
+              ng-checked="!checkedTable" 
+              class="form-control">              
+            </div>
+          </div>                 
+        </div>         
+        <div class="row" style="margin-top: 20px;">    
+          <div class="col-6">
+            <div class="form-group">
+              <label for="registry">Id de registro</label>
+              <input id="float-input" type="text" name="registryId" 
+              [disabled]="!habilitarRegistryId"
+              [(ngModel)]="findBinnacle.registryId" 
+                class="form-control">
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="table">Nombre tabla</label>
+              <input id="float-input" type="text" name="nameTable" 
+              [disabled]="!hablitarNameTable"
+              [(ngModel)]="findBinnacle.nameTable"
+              class="form-control">             
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="database">Nombre base de datos</label>
+              <input id="float-input" type="text" name="nameDatabase" 
+              [disabled]="!hablitarNameDatabase"
+              [(ngModel)]="findBinnacle.nameDatabase"
+              class="form-control">              
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="application">Nombre aplicación</label>
+              <input id="float-input" type="text" name="nameApplication" 
+              [disabled]="!habilitarNameApplication"
+              [(ngModel)]="findBinnacle.nameApplication" 
+              class="form-control">
+            </div>
+          </div>
+          <div class="row pl-2">
+            <div class="col-12">
+              <button 
+              label="Guardar" 
+              class="btn Primary - blue">Consultar</button>
+              
+              <button  type="button" 
+              label="Limpiar" 
+              class="btn Primary - blue" 
+              (click)="reset()">Limpiar</button>
+            </div>
+          </div>
+        </div>        
+      </form>
+    </div>
+  </div>
+  <br>
+  <div class="container-fluid">
+    <div class="row" style="margin-top: 20px;">
+      <div class="col">
+        <div class="row">
+          <div class="col-md-8">            
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table #tt class="table table-hover table-bordered">
+            <thead class="thead thead-dark">
+              <tr>
+                <th>ID</th>
+                <th>Id Registro</th>
+                <th>Nombre de la tabla</th>
+                <th>Base de datos</th>
+                <th>Nombre de la aplicación</th>
+                <th>Versión</th>
+                <th>Registro</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let item of resultFindBinnacle | paginate: {itemsPerPage: 10, currentPage: pageActual}">
+                <td>{{item.id}}</td>
+                <td>{{item.registryId}}</td>
+                <td>{{item.nameApplication}}</td>
+                <td>{{item.nameTable}}</td>
+                <td>{{item.nameDatabase}}</td>
+                <td>{{item.actualVersion}}</td>
+                <td>{{item.registry}}</td>                
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<pagination-controls (pageChange)=" pageActual = $event" style="text-align: center;">
+</pagination-controls>
+<p-toast></p-toast>
+<p-confirmDialog icon="pi pi-exclamation-triangle" acceptButtonStyleClass="ui-button-info"
+  rejectButtonStyleClass="ui-button-info" [style]="{width: '50vw'}">
+</p-confirmDialog>
